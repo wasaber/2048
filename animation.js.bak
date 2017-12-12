@@ -1,0 +1,33 @@
+function Task(div,stepL,stepT){
+  this.div=div;
+  this.stepL=stepL;
+  this.stepT=stepT;
+}
+var animation={
+  DURATION:1000,
+  STEPS:200,
+  interval:0,
+  timer:null,
+  moved:0,
+  CSIZE:100,
+  OFFSET:16,
+  tasks:[],
+  init:function(){
+    this.interval=this.DURATION/this.STEPS;
+  },
+  addTask:function(endr,endc,startr,startc){
+    var div=document.getElementById("c"+startr+startc);
+    var stepL=(endc-startc)*(this.CSIZE+this.OFFSET)/this.STEPS;
+    var stepT=(endr-startr)*(this.CSIZE+this.OFFSET)/this.STEPS;
+    this.tasks.push(new Task(div,stepL,stepT));
+  },
+  play:function(callback){
+    this.timer=setInterval(
+      this.playStep.bind(this,callback),this.interval  
+    )
+  },
+  playStep:function(callback){
+    
+  }
+}
+animation.init();
